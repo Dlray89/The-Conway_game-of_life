@@ -1,62 +1,72 @@
-import React from "react"
-import "./App.css"
-import Cell from "./componets/Cell"
-import Universal from "./componets/Universal"
+import React, { Component } from 'react';
+import './App.css';
+import Universe from './componets/Universal';
 
-
-class App extends React.Component {
-    constructor(props){
+export default class Game extends Component {
+    constructor(props) {
         super(props);
         this.state = {
-            Universal: new Universal(),
+            universe: new Universe(),
             size: [90, 20],
-            gameRunning: false
+            gameRunning: false,
+            interval: 100
         }
+
         this.handleColumnChange = this.handleColumnChange.bind(this);
-        this.handleRowChange = this.handleRowChange.bind(this)
-        this.startGame = this.startGame.bind(this)
-        this.stopGame = this.stopGame.bind(this)
-        this.renderBoard = this.renderBoard.bind(this)
-        this.storeCell = this.storeCell.bind(this)
+        this.handleRowChange = this.handleRowChange.bind(this);
+        this.startGame = this.startGame.bind(this);
+        this.stopGame = this.stopGame.bind(this);
+        this.renderBoard = this.renderBoard.bind(this);
+        this.storeCell = this.storeCell.bind(this);
     }
 
-    handleRowChange(e) {
-        if(!this.state.gameRunning) {
-            let actualSize = this.state.size;
+    handleRowChange(event) {
+        if (!this.state.gameRunning) {
+            var actualSize = this.state.size;
 
-            if(e.target.value < 20)
-                actualSize[1] = e.target.value;
+            if (event.target.value < 20)
+                actualSize[1] = event.target.value;
             else
-                actualSize[1] = 20
+                actualSize[1] = 20;
 
             this.setState({
-                size: actualSize
-            })
+                size: actualSize,
+            });
 
-            this.renderBoard()
+            this.renderBoard();
         }
     }
 
-    handleColumnChange(e) {
-        if(!this.state.gameRunning) {
-            let actualSize = this.state.size;
-            if(e.target.value < 90)
-                actualSize[0] = e.target.value;
-            else        
+    handleColumnChange(event) {
+        if (!this.state.gameRunning) {
+            var actualSize = this.state.size;
+            if (event.target.value < 90)
+                actualSize[0] = event.target.value;
+            else
                 actualSize[0] = 90;
 
             this.setState({
-                size: actualSize
+                size: actualSize,
+            });
+
+            this.renderBoard();
+        }
+    }
+
+    changeInterval = (event) => {
+        if (!this.state.gameRunning) {
+            this.setState({
+                interval: event.target.value
             })
         }
     }
 
     startGame() {
-        if(!this.state.gameRunning) {
+        if (!this.state.gameRunning) {
             this.setState({
-                gameRunning: true
+                gameRunning: true,
             }, () => {
-                this.intervalRef = setInterval(() => this.runGame(), 10)
+                this.intervalRef = setInterval(() => this.runGame(), this.state.interval);
             })
         }
     }
@@ -64,77 +74,86 @@ class App extends React.Component {
     stopGame() {
         this.setState({
             gameRunning: false
-        },() => {
-            if(this.intervalRef) {
-                clearInterval(this.intervalRef)
+        }, () => {
+            if (this.intervalRef) {
+                clearInterval(this.intervalRef);
             }
         })
-
     }
 
     runGame() {
         this.setState({
-            universal: this.state.Universal.addGeneration()
+            universe: this.state.universe.addGeneration()
         })
-
     }
 
     storeCell(position) {
-        if(!this.state.gameRunning) {
+        if (!this.state.gameRunning) {
             this.setState({
-                universal: this.state.Universal.storeCell(position)
+                universe: this.state.universe.storeCell(position)
             })
         }
     }
-//
-    renderBoard() {
-        let newWorld = []
-        let cellRow = []
 
-        for(let i = 0; i < this.state.size[0]; i++) {
-            for (let j = 0; j < this.state.size[1]; j++) {
-                if(this.state.Universal.isCellAlive(i + ',' + j)){
-                    cellRow.push(<Cell key={[i, j]} position={{x: i, y: j}} live={true} storeCell={this.storeCell.bind(this)}  />)
+    renderBoard() {
+        var newWorld = [];
+        var cellRow = [];
+
+        for (var i = 0; i < this.state.size[0]; i++) {
+            for (var j = 0; j < this.state.size[1]; j++) {
+                if (this.state.universe.isCellAlive(i + " , " + j)) {
+                    cellRow.push(
+                        <Cell key={[i, j]} position={{ x: i, y: j }} live={true} storeCell={this.storeCell.bind(this)} />
+                    );
                 } else {
-                    cellRow.push(<Cell key={[i, j]} position={{x: i, y: j}} live={false} storeCell={this.storeCell.bind(this)}  />)
+                    cellRow.push(
+                        <Cell key={[i, j]} position={{ x: i, y: j }} live={false} storeCell={this.storeCell.bind(this)} />
+                    );
                 }
             }
-            newWorld.push(<div className='row'>{cellRow}</div>);
-            cellRow = []
+            newWorld.push(<div className="row" key={i}>{cellRow}</div>);
+            cellRow = [];
         }
-        return newWorld
 
+        return newWorld;
     }
-
 
     render() {
         return (
-            <div className='worldContainer'>
-                <div className='headerContainer'>
-                    <div className='headerInnerContainer'>
-                        <label className='label'>
+            <div className="worldContainer">
+                <div className="headerContainer">
+                    <div className="headerInnerContainer">
+                        <label className="label">
                             Rows:
-                            <input className='input' type='text' value={this.state.size[1]} onChange={this.handleRowChange} />
+              <input className="input" type="text" value={this.state.size[1]} onChange={this.handleRowChange} />
                         </label>
-                        <label className='label'>
-                            Columns
-                            <input className='input' type='text' value={this.state.size[0]} onChange={this.handleColumnChange} />
+                        <label className="label">
+                            Columns:
+              <input className="input" type="text" value={this.state.size[0]} onChange={this.handleColumnChange} />
+                        </label>
+                        <label className="label">
+                            Interval:
+              <input className="input" type="text" value={this.state.interval} onChange={this.changeInterval} />
                         </label>
                     </div>
-                    <div className='headerButton'>
+                    <div className="headerButtons">
                         <button className="submit" onClick={this.startGame}>Start</button>
-                        <button className="submit" onClick={this.endGame}>Stop</button>
+                        <button className="submit" onClick={this.stopGame}>Stop</button>
                     </div>
-                    Generation: {this.state.Universal.getGeneration()}
+          Generation: {this.state.universe.getGeneration()}
                 </div>
-                <div className='boardContainer'>
+                <div className="boardContainer">
                     {this.renderBoard()}
                 </div>
             </div>
-        )
+        );
     }
 }
 
-export default App
-
-
+class Cell extends Component {
+    render() {
+        return (
+            <div onClick={() => this.props.storeCell(this.props.position)} className={this.props.live ? "cellContainerLive" : "cellContainerDead"}></div>
+        );
+    }
+}
