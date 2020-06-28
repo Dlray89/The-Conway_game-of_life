@@ -1,25 +1,33 @@
 .worldContainer {
     display: flex;
     flex-direction: column;
-    flex: 1
+    flex: 1;
+    background: black;
+    padding: 2%
     
 }
 
-.headerContiner {
+.headerContainer {
     display: flex;
-    flex-direction: column;
-    flex: 1
+    flex-direction: row;
+    text-align: center
 }
 
-.submit {
-    width: 50%;
-    margin: 5px;
+.buttons {
+    width: 30%;
+    border: solid 2px red;
+    background: white
+    
+    
 }
 
 .headerInnerContainer {
     display: flex;
+    
+    justify-content: space-between;
     text-align: center;
-    width: 200px;
+    width: 70%;
+    margin: 0 auto;
     padding: 20px 20px 0 20px;
 
 }
@@ -28,11 +36,14 @@
     display: flex;
     margin-bottom: 16px;
     margin-right: 10px;
+    width: 30%
 
 }
 
 .input {
-    margin-left: 5px;
+    margin: 2% auto;
+    border: solid 2px green;
+    width: 100%;
 }
 
 .boardContainer {
@@ -43,24 +54,82 @@
 
 }
 
-.headerButton {
+.generation {
+    color: white;
+    width: 89%;
+    margin: 0 auto
+   
+}
+
+.intro {
+    color: white;
+    border: solid 2px red;
+    text-align: center;
+    background: linear-gradient(to bottom, #870000, #190a05);
+    padding: 1%;
+    margin: 0 auto;
+    width: 90%
+}
+
+.divider {
+    width: 80%;
+    margin: 3% auto
+}
+
+.controls {
+    color: white;
+    border: solid 2px white;
+    width: 90%;
+    margin: 3% auto;
+    text-align: center;
+    padding: 1%
+
+}
+
+.rules {
+    color: white
+}
+
+.headerButtons {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+   margin: 0%;
+   height: 0%;
+    padding: 0%;
     width: 20%;
-    padding: 0 20px 20px;
+    border: solid 2px purple
 }
 
 .cellContainerDead {
     display: flex;
     padding: 10px;
     margin: 1px;
-    border: solid 1px black
+    border: solid 1px grey;
+    background: black
 }
 
-.cellContainerLive {
+.color-change-2x {
     display: flex;
     padding: 10px;
     margin: 1px;
     border: solid 1px black;
-    background-color: black;
+    background-color: red;-webkit-animation: color-change-2x 2s linear infinite alternate both;
+	        animation: color-change-2x 2s linear infinite alternate both;
+
+}
+@-webkit-keyframes color-change-2x {
+  0% {
+    background: #e40404;
+  }
+  100% {
+    background: #190A05;
+  }
+}
+@keyframes color-change-2x {
+  0% {
+    background: #e40404;
+  }
+  100% {
+    background: #190A05;
+  }
 }
