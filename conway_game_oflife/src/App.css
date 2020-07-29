@@ -63,9 +63,9 @@
 
 .intro {
     color: white;
-    border: solid 2px red;
+    border: solid 2px #00b09b;
     text-align: center;
-    background: linear-gradient(to bottom, #870000, #190a05);
+    background: linear-gradient(to right, #00b09b, #96c93d);
     padding: 1%;
     margin: 0 auto;
     width: 90%
@@ -78,7 +78,7 @@
 
 .controls {
     color: white;
-    border: solid 2px white;
+    border: solid 2px #00b09b;
     width: 90%;
     margin: 3% auto;
     text-align: center;
@@ -119,17 +119,17 @@
 }
 @-webkit-keyframes color-change-2x {
   0% {
-    background: #e40404;
+    background: #00b09b;
   }
   100% {
-    background: #190A05;
+    background: #96c93d;
   }
 }
 @keyframes color-change-2x {
   0% {
-    background: #e40404;
+    background: #00b09b;
   }
   100% {
-    background: #190A05;
+    background: #96c93d;
   }
 }

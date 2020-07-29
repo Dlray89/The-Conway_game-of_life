@@ -183,7 +183,7 @@ export default class Game extends Component {
 
                     
                     <div className="headerInnerContainer">
-                        <Button className='buttons' style={{background: 'linear-gradient(to bottom, #870000, #190a05)', color: 'white', border:'solid 1px red'}}variant='outlined' onClick={this.handleOpen}>Settings</Button>
+                        <Button className='buttons' style={{background: 'linear-gradient(to right, #00b09b, #96c93d)', color: 'white', border:'solid 1px #00b09b'}}variant='outlined' onClick={this.handleOpen}>Settings</Button>
 
                         <Dialog open={this.state.open}>
                             <DialogTitle>Settings</DialogTitle>
@@ -205,8 +205,8 @@ export default class Game extends Component {
                             </DialogActions>
                         </Dialog>
 
-                        <Button variant='outlined' className="buttons"  onClick={this.startGame}style={{background: 'linear-gradient(to bottom, #870000, #190a05)', color: 'white', border:'solid 1px red'}} >Start</Button>
-                        <Button style={{background: 'linear-gradient(to bottom, #870000, #190a05)', color: 'white', border:'solid 1px red'}} variant='outlined' className="buttons" onClick={this.stopGame}>Stop</Button>
+                        <Button variant='outlined' className="buttons"  onClick={this.startGame}style={{background: 'linear-gradient(to right, #00b09b, #96c93d)', color: 'white', border:'solid 1px #00b09b'}} >Start</Button>
+                        <Button style={{background: 'linear-gradient(to right, #00b09b, #96c93d)', color: 'white', border:'solid 1px #00b09b'}} variant='outlined' className="buttons" onClick={this.stopGame}>Stop</Button>
 
 
                     </div>
