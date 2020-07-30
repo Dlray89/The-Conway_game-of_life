@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     flex: 1;
-    background: black;
+    background: #00b09b;
     padding: 2%
     
 }
@@ -50,7 +50,8 @@
     display: flex;
     flex: 1;
     justify-content: center;
-    padding: 0 60px;
+    padding: 10px 60px;
+    
 
 }
 
@@ -78,11 +79,13 @@
 
 .controls {
     color: white;
-    border: solid 2px #00b09b;
+    border: solid 1px white;
     width: 90%;
-    margin: 3% auto;
+    margin: 1% auto;
     text-align: center;
-    padding: 1%
+    display: flex;
+    justify-content: space-evenly;
+    
 
 }
 
