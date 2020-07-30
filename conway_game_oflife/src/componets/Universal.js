@@ -5,7 +5,7 @@ export default class Universe {
     this.nextGeneration = new Map();
     this.deadCells = new Map();
   }
-
+//
   getGeneration() {
     return this.generation;
   }
