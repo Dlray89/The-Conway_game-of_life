@@ -8,13 +8,19 @@ export default class Game extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            //state for the logic
             universe: new Universe(),
+            //state for the game board
             size: [40, 20],
+            //state for starting game 
             gameRunning: false,
+            //state foe speed
             interval: 100,
+            //state for modal
             open: false
         }
 
+        //needs access the the .this
         this.handleColumnChange = this.handleColumnChange.bind(this);
         this.handleRowChange = this.handleRowChange.bind(this);
         this.startGame = this.startGame.bind(this);
@@ -23,6 +29,7 @@ export default class Game extends Component {
         this.storeCell = this.storeCell.bind(this);
     }
 
+        //change handler to allow users to change the row size
     handleRowChange(event) {
         if (!this.state.gameRunning) {
             var actualSize = this.state.size;
@@ -39,7 +46,7 @@ export default class Game extends Component {
             this.renderBoard();
         }
     }
-
+    //handle change for users to change the columns
     handleColumnChange(event) {
         if (!this.state.gameRunning) {
             var actualSize = this.state.size;
@@ -55,7 +62,7 @@ export default class Game extends Component {
             this.renderBoard();
         }
     }
-
+    //Handle change for speed 
     changeInterval = (event) => {
         if (!this.state.gameRunning) {
             this.setState({
@@ -82,6 +89,7 @@ export default class Game extends Component {
         }
     }
 
+    //Change handler to start start the game 
     startGame() {
         if (!this.state.gameRunning) {
             this.setState({
@@ -92,6 +100,7 @@ export default class Game extends Component {
         }
     }
 
+    //Handle change to stop the game 
     stopGame() {
         this.setState({
             gameRunning: false
@@ -102,6 +111,7 @@ export default class Game extends Component {
         })
     }
 
+    //an important funtion. this will run all logic and give us our universe for each gen
     runGame() {
         this.setState({
             universe: this.state.universe.addGeneration()
@@ -120,6 +130,7 @@ export default class Game extends Component {
         var newWorld = [];
         var cellRow = [];
 
+        // This loop is responsible for the creation of every rows and columns for the game and add the respective cells to our board
         for (var i = 0; i < this.state.size[0]; i++) {
             for (var j = 0; j < this.state.size[1]; j++) {
                 if (this.state.universe.isCellAlive(i + " , " + j)) {
@@ -210,6 +221,7 @@ export default class Game extends Component {
     }
 }
 
+//This component is used to draw every cell on the board
 class Cell extends Component {
     render() {
         return (
